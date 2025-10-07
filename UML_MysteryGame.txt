@@ -1,0 +1,80 @@
+UML Diagram – Final Project: Text-Based Mystery Game
+
+-------------------------------------------------
+|                 Player                        |
+-------------------------------------------------
+| - playerName: String                          |
+| - cluesFound: int                             |
+| - guessesRemaining: int                       |
+| - currentScene: String                        |
+-------------------------------------------------
+| + Player(String)                              |
+| + getPlayerName(): String                     |
+| + setPlayerName(String): void                 |
+| + getCluesFound(): int                        |
+| + findClue(): void                            |
+| + getGuessesRemaining(): int                  |
+| + useGuess(): void                            |
+| + getCurrentScene(): String                   |
+| + setCurrentScene(String): void               |
+| + toString(): String                          |
+-------------------------------------------------
+
+
+-------------------------------------------------
+|                 SceneNode                     |
+-------------------------------------------------
+| - sceneID: String                             |
+| - sceneText: String                           |
+| - choices: ArrayList<String>                  |
+| - nextSceneIDs: ArrayList<String>             |
+| - isEnding: boolean                           |
+-------------------------------------------------
+| + SceneNode(String, String, boolean)          |
+| + getSceneID(): String                        |
+| + getSceneText(): String                      |
+| + getChoices(): ArrayList<String>             |
+| + addChoice(String, String): void             |
+| + getNextSceneID(int): String                 |
+| + isEnding(): boolean                         |
+-------------------------------------------------
+
+
+-------------------------------------------------
+|                 GameEngine                    |
+-------------------------------------------------
+| - player: Player                              |
+| - scenes: HashMap<String, SceneNode>          |
+| - currentScene: SceneNode                     |
+-------------------------------------------------
+| + GameEngine(Player)                          |
+| + addScene(SceneNode): void                   |
+| + start(String): void                         |
+| + getCurrentSceneText(): String               |
+| + getCurrentScene(): SceneNode                |
+| + makeChoice(int): void                       |
+| + isGameOver(): boolean                       |
+-------------------------------------------------
+
+
+-------------------------------------------------
+|              MysteryGameApp                   |
+-------------------------------------------------
+| - gameEngine: GameEngine                      |
+| - storyArea: TextArea                         |
+| - choiceButtons: Button[]                     |
+-------------------------------------------------
+| + start(Stage): void                          |
+| - updateScene(int): void                      |
+| - updateChoices(): void                       |
+| + main(String[]): void                        |
+-------------------------------------------------
+extends Application (JavaFX)
+-------------------------------------------------
+
+
+Relationships:
+- MysteryGameApp "has a" GameEngine
+- GameEngine "has a" Player
+- GameEngine "has many" SceneNodes
+- SceneNode objects are linked via nextSceneIDs
